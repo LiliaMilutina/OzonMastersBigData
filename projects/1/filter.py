@@ -65,12 +65,12 @@ for line in sys.stdin:
         continue
 
     #unpack into a tuple/dict
-    values = line.rstrip().split('\t')
-    hotel_record = dict(zip(fields, values)) #Hotel(values)
+    values = line.split('\t')
+    record = dict(zip(fields, values)) #Hotel(values)
 
     #apply filter conditions
-    if filter_cond(hotel_record):
-        output = "\t".join([hotel_record[x] for x in outfields])
+    if filter_cond(record):
+        output = "\t".join([record[x] for x in outfields])
         print(output)
 
 
