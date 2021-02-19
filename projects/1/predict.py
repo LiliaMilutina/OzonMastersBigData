@@ -30,6 +30,6 @@ read_opts=dict(
 
 for df in pd.read_csv(sys.stdin, **read_opts):
     pred = model.predict(df)
-    out = zip(df.doc_id, pred)
+    out = zip(df.id, pred)
     print("\n".join(["{0},{1}".format(*i) for i in out]))
 
