@@ -19,18 +19,20 @@ logging.info("ARGS {}".format(sys.argv[1:]))
 #load the model
 model = load("1.joblib")
 
-#fields = """doc_id,hotel_name,hotel_url,street,city,state,country,zip,class,price,
-#num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
+# #fields = """doc_id,hotel_name,hotel_url,street,city,state,country,zip,class,price,
+# #num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
 
-#read and infere
-read_opts=dict(
-        sep='\t', names=fields_val, index_col=False, header=None,
-        iterator=True, chunksize=100
-)
+# #read and infere
+# read_opts=dict(
+#         sep='\t', names=fields_val, index_col=False, header=None,
+#         iterator=True, chunksize=100
+# )
 
-for df in pd.read_csv(sys.stdin, **read_opts):
-        print(df.id)
-#     pred = model.predict(df)
-#     out = zip(df.id, pred)
-#     print("\n".join(["{0},{1}".format(*i) for i in out]))
+# for df in pd.read_csv(sys.stdin, **read_opts):
+#         print(df.id)
+# #     pred = model.predict(df)
+# #     out = zip(df.id, pred)
+# #     print("\n".join(["{0},{1}".format(*i) for i in out]))
+
+print("Hello")
 
