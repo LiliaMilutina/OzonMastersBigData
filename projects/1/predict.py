@@ -5,7 +5,7 @@ import logging
 from joblib import load
 import pandas as pd
 
-# sys.path.append('.')
+sys.path.append('.')
 
 from model import fields_val
 
