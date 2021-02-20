@@ -16,9 +16,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 
 # We create the preprocessing pipelines for both numeric and categorical data.
 numeric_features = ["if"+str(i) for i in range(1,14)]
-
-list_cat = [6, 9, 13, 16, 17, 19, 25, 26]
-categorical_features = ["cf"+str(i) for i in list_cat] + ["day_number"]
+categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
 
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='median')),
