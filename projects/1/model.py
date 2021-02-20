@@ -30,6 +30,7 @@ categorical_transformer = Pipeline(steps=[
 ])
 
 fields = ["id", "label"] + numeric_features + categorical_features
+fields_val = ["id"] + numeric_features + categorical_features
 
 preprocessor = ColumnTransformer(
     transformers=[
