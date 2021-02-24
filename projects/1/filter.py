@@ -71,12 +71,13 @@ for line in sys.stdin:
         continue
 
     #unpack into a tuple/dict
-    values = line.rstrip().split('\t')
+    values = line.rstrip().split('\n')
     record = dict(zip(fields_val, values)) #Hotel(values)
 
     #apply filter conditions
-    if filter_cond(record):
-        output = "\t".join([record[x] for x in outfields])
-        print(output)
+    if record["if1"] is not None:
+        if filter_cond(record):
+            output = "\t".join([record[x] for x in outfields])
+            print(output)
 
 
