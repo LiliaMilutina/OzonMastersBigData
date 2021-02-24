@@ -64,7 +64,6 @@ exec(open(filter_cond_files[0]).read())
 outfields = fields_val
 
 
-
 for line in sys.stdin:
     # skip header
     if line.startswith(fields_val[0]):
