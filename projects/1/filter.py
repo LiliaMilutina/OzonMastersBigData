@@ -65,7 +65,7 @@ for line in sys.stdin:
         continue
 
     #unpack into a tuple/dict
-    values = line.split('\t')
+    values = line..rstrip().split('\t')
     record = dict(zip(fields_val, values)) #Hotel(values)
 
     #apply filter conditions
