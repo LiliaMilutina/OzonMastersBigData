@@ -13,12 +13,12 @@ categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
 fields_val = ["id"] + numeric_features + categorical_features
 
 #
-# Init the logger
-#
-logging.basicConfig(level=logging.DEBUG)
-logging.info("CURRENT_DIR {}".format(os.getcwd()))
-logging.info("SCRIPT CALLED AS {}".format(sys.argv[0]))
-logging.info("ARGS {}".format(sys.argv[1:]))
+# # Init the logger
+# #
+# logging.basicConfig(level=logging.DEBUG)
+# logging.info("CURRENT_DIR {}".format(os.getcwd()))
+# logging.info("SCRIPT CALLED AS {}".format(sys.argv[0]))
+# logging.info("ARGS {}".format(sys.argv[1:]))
 
 #load the model
 model = load("1.joblib")
