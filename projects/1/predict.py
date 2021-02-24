@@ -5,7 +5,7 @@ import logging
 from joblib import load
 import pandas as pd
 
-# sys.path.append('.')
+sys.path.append('.')
 
 numeric_features = ["if"+str(i) for i in range(1,14)]
 categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
