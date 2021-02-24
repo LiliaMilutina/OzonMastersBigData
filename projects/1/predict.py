@@ -7,7 +7,10 @@ import pandas as pd
 
 # sys.path.append('.')
 
-from model import fields_val
+numeric_features = ["if"+str(i) for i in range(1,14)]
+categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
+
+fields_val = ["id"] + numeric_features + categorical_features
 
 #
 # Init the logger
