@@ -7,10 +7,7 @@ import logging
 
 sys.path.append('.')
 
-numeric_features = ["if"+str(i) for i in range(1,14)]
-categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
-
-fields_val = ["id"] + numeric_features + categorical_features
+from model import fields_val
 
 #
 # Init the logger
@@ -39,29 +36,27 @@ exec(open(filter_cond_files[0]).read())
 #num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
 
 #
-# Optional argument
-# If +field option is given, output the id (always first record) and the given field
-# if -field is given, output all but the given field
-#
+Optional argument
+If +field option is given, output the id (always first record) and the given field
+if -field is given, output all but the given field
 
-# if len(sys.argv) == 1:
-#   #by default print all fields
-#   outfields = fields_val
-# else:
-#   op, field = sys.argv[1][0], sys.argv[1][1:]
-#   logging.info(f"OP {op}")
-#   logging.info(f"FIELD {field}")
 
-#   if not op in "+-" or not field in fields_val:
-#     logging.critical("The optional argument must start with + or - followed by a valid field")
-#     sys.exit(1)
-#   elif op == '+':
-#     outfields = [fields_val[0], field]
-#   else:
-#     outfields = list(fields_val) # like deepcopy, but on the first level only!
-#     outfields.remove(field)
+if len(sys.argv) == 1:
+  #by default print all fields
+  outfields = fields_val
+else:
+  op, field = sys.argv[1][0], sys.argv[1][1:]
+  logging.info(f"OP {op}")
+  logging.info(f"FIELD {field}")
 
-outfields = fields_val
+  if not op in "+-" or not field in fields_val:
+    logging.critical("The optional argument must start with + or - followed by a valid field")
+    sys.exit(1)
+  elif op == '+':
+    outfields = [fields_val[0], field]
+  else:
+    outfields = list(fields_val) # like deepcopy, but on the first level only!
+    outfields.remove(field)
 
 
 for line in sys.stdin:
