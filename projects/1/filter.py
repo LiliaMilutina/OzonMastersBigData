@@ -6,7 +6,7 @@ from glob import glob
 import logging
 
 sys.path.append('.')
-from model import fields
+from model import fields_val
 
 #
 # Init the logger
@@ -42,31 +42,31 @@ exec(open(filter_cond_files[0]).read())
 
 if len(sys.argv) == 1:
   #by default print all fields
-  outfields = fields
+  outfields = fields_val
 else:
   op, field = sys.argv[1][0], sys.argv[1][1:]
   logging.info(f"OP {op}")
   logging.info(f"FIELD {field}")
 
-  if not op in "+-" or not field in fields:
+  if not op in "+-" or not field in fields_val:
     logging.critical("The optional argument must start with + or - followed by a valid field")
     sys.exit(1)
   elif op == '+':
-    outfields = [fields[0], field]
+    outfields = [fields_val[0], field]
   else:
-    outfields = list(fields) # like deepcopy, but on the first level only!
+    outfields = list(fields_val) # like deepcopy, but on the first level only!
     outfields.remove(field)
 
 
 
 for line in sys.stdin:
     # skip header
-    if line.startswith(fields[0]):
+    if line.startswith(fields_val[0]):
         continue
 
     #unpack into a tuple/dict
     values = line.split('\t')
-    record = dict(zip(fields, values)) #Hotel(values)
+    record = dict(zip(fields_val, values)) #Hotel(values)
 
     #apply filter conditions
     if filter_cond(record):
