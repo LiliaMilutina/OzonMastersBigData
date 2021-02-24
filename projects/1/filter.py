@@ -36,9 +36,9 @@ exec(open(filter_cond_files[0]).read())
 #num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
 
 #
-Optional argument
-If +field option is given, output the id (always first record) and the given field
-if -field is given, output all but the given field
+# Optional argument
+# If +field option is given, output the id (always first record) and the given field
+# if -field is given, output all but the given field
 
 
 if len(sys.argv) == 1:
