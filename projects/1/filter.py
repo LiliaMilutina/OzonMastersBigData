@@ -74,7 +74,7 @@ for line in sys.stdin:
     record = dict(zip(fields_val, values)) #Hotel(values)
 
     #apply filter conditions
-    if record["if1"] is not None:
+    if record["if1"].isdigit():
         if filter_cond(record):
             output = "\t".join([record[x] for x in outfields])
             print(output)
