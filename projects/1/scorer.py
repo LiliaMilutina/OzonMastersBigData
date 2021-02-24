@@ -26,7 +26,7 @@ prev_key = None
 values = []
 
 for line in sys.stdin:
-    key, value = line.split("\t")
+    key, value = line.split("\n")
 
     if key != prev_key and prev_key is not None:
         score += math.fabs(values[0] - values[1])
