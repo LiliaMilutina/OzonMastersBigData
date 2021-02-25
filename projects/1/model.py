@@ -46,6 +46,6 @@ w = {0:97, 1:3}
 # Now we have a full prediction pipeline.
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('logregression', DecisionTreeClassifier(class_weight=w))
+    ('logregression', DecisionTreeClassifier(class_weight=w, max_depth=2, max_features='log2'))
 ])
 
