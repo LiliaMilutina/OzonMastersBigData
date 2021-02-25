@@ -43,6 +43,6 @@ preprocessor = ColumnTransformer(
 # Now we have a full prediction pipeline.
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('logregression', KNeighborsClassifier (n_neighbors=3))
+    ('logregression', LogisticRegression())
 ])
 
