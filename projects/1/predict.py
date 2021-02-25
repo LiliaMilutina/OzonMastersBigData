@@ -28,8 +28,8 @@ read_opts=dict(
 
 THRESHOLD = 0.9
 for df in pd.read_csv(sys.stdin, **read_opts):
-        pred = model.predict_proba(df)
-        preds = np.where(y_pred[:,1] > THRESHOLD, 1, 0)
-        out = zip(df.id, preds)
-        print("\n".join(["{0}\t{1}".format(*i) for i in out]))
+    pred = model.predict_proba(df)
+    preds = np.where(y_pred[:,1] > THRESHOLD, 1, 0)
+    out = zip(df.id, preds)
+    print("\n".join(["{0}\t{1}".format(*i) for i in out]))
 
