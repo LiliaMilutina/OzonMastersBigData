@@ -5,7 +5,9 @@ import logging
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import log_loss
 from joblib import dump
+import numpy as np
 
 #
 # Import model definition
@@ -54,7 +56,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 #
 model.fit(X_train, y_train)
 
-model_score = model.score(X_test, y_test)
+THRESHOLD = 0.9
+pred = model.predict_proba(X_test)
+preds = np.where(y_pred[:,1] > THRESHOLD, 1, 0)
+
+model_score = log_loss(y_test, y_pred)
 
 logging.info(f"model score: {model_score:.3f}")
 
