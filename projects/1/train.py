@@ -57,7 +57,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 model.fit(X_train, y_train)
 
 THRESHOLD = 0.9
-pred = model.predict_proba(X_test)
+y_pred = model.predict_proba(X_test)
 y_pred = np.where(y_pred[:,1] > THRESHOLD, 1, 0)
 
 model_score = log_loss(y_test, y_pred)
