@@ -58,7 +58,7 @@ exec(open(filter_cond_files[0]).read())
 #     outfields = list(fields_val) # like deepcopy, but on the first level only!
 #     outfields.remove(field)
 
-outfields = list(fields_val)
+outfields = fields_val
 
 for line in sys.stdin:
     # skip header
