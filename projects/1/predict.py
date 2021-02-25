@@ -7,7 +7,7 @@ import pandas as pd
 
 sys.path.append('.')
 
-from model import fields_val
+from model import model, fields_val
 
 
 # Init the logger
@@ -26,8 +26,10 @@ read_opts=dict(
         iterator=True, chunksize=100
 )
 
+THRESHOLD = 0.9
 for df in pd.read_csv(sys.stdin, **read_opts):
-    pred = model.predict(df)
-    out = zip(df.id, pred)
-    print("\n".join(["{0}\t{1}".format(*i) for i in out]))
+        pred = model.predict_proba(df)
+        preds = np.where(y_pred[:,1] > THRESHOLD, 1, 0)
+        out = zip(df.id, preds)
+        print("\n".join(["{0}\t{1}".format(*i) for i in out]))
 
