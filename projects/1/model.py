@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
 
 #
 # Dataset fields
@@ -45,6 +46,6 @@ w = {0:97, 1:3}
 # Now we have a full prediction pipeline.
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('logregression', LogisticRegression(class_weight=w, penalty = 'l1', solver='liblinear'))
+    ('logregression', DecisionTreeClassifier(class_weight=w))
 ])
 
