@@ -14,12 +14,6 @@ import numpy as np
 #
 from model import model, fields
 
-# numeric_features = ["if"+str(i) for i in range(1,14)]
-
-# categorical_features = ["cf"+str(i) for i in range(1,27)]+ ["day_number"]
-
-# fields_ = ["id", "label"] + numeric_features + categorical_features
-
 #
 # Logging initialization
 #
@@ -61,7 +55,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 #
 model.fit(X_train, y_train)
 
-y_pred = model.predict(X_test)
+y_pred = model.predict_proba(X_test)
 
 model_score = log_loss(y_test, y_pred)
 
