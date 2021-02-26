@@ -3,7 +3,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
 
@@ -18,13 +17,11 @@ from sklearn.tree import DecisionTreeClassifier
 
 # We create the preprocessing pipelines for both numeric and categorical data.
 numeric_features = ["if"+str(i) for i in range(1,14)]
-# list_cat = [4, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 19, 24, 25, 26]
-# categorical_features = ["cf"+str(i) for i in list_cat] + 
 categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
 
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='median')),
-   ('scaler', StandardScaler())
+#    ('scaler', StandardScaler())
 ])
 
 categorical_transformer = Pipeline(steps=[
@@ -42,11 +39,9 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-w = {1:10, 0:1}
-
 # Now we have a full prediction pipeline.
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('logregression', LogisticRegression(penalty='l2', C=1, class_weight="balanced"))
+    ('logregression', LogisticRegression())
 ])
 
