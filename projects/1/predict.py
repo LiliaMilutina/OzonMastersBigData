@@ -10,12 +10,6 @@ sys.path.append('.')
 
 from model import model, fields_val
 
-# numeric_features = ["if"+str(i) for i in range(1,14)]
-
-# categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
-
-# fields_val_ = ["id"] + numeric_features + categorical_features 
-
 
 # Init the logger
 #
@@ -34,7 +28,7 @@ read_opts=dict(
 )
 
 for df in pd.read_csv(sys.stdin, **read_opts):
-    y_pred = model.predict(df)
+    y_pred = model.predict_proba(df)
     out = zip(df.id, y_pred)
     print("\n".join(["{0}\t{1}".format(*i) for i in out]))
 
