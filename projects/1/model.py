@@ -41,7 +41,7 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-w = {1:85, 0:15}
+w = {1:10, 0:1}
 
 # Now we have a full prediction pipeline.
 model = Pipeline(steps=[
