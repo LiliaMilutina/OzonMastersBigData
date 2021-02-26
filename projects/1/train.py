@@ -57,7 +57,7 @@ model.fit(X_train, y_train)
 
 y_pred = model.predict_proba(X_test)
 
-model_score = log_loss(y_test, y_pred)
+model_score = log_loss(y_test, y_pred[:, 1])
 
 logging.info(f"model score: {model_score:.3f}")
 
