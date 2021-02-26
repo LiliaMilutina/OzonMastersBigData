@@ -10,11 +10,11 @@ sys.path.append('.')
 
 from model import model, fields_val
 
-numeric_features = ["if"+str(i) for i in range(1,14)]
+# numeric_features = ["if"+str(i) for i in range(1,14)]
 
-categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
+# categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
 
-fields_val_ = ["id"] + numeric_features + categorical_features 
+# fields_val_ = ["id"] + numeric_features + categorical_features 
 
 
 # Init the logger
@@ -29,7 +29,7 @@ model = load("1.joblib")
 
 #read and infere
 read_opts=dict(
-        sep='\t', names=fields_val_, index_col=False, header=None,
+        sep='\t', names=fields_val, index_col=False, header=None,
         iterator=True, chunksize=100
 )
 
