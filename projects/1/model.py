@@ -41,11 +41,11 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-w = {0:85, 1:15}
+w = {1:85, 0:15}
 
 # Now we have a full prediction pipeline.
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('logregression', LogisticRegression(solver='saga', penalty='l2', C=1, class_weight=w))
+    ('logregression', LogisticRegression(penalty='l2', C=1, class_weight=w))
 ])
 
