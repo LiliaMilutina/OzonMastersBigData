@@ -15,8 +15,8 @@ import numpy as np
 from model import model, fields
 
 numeric_features = ["if"+str(i) for i in range(1,14)]
-list_cat = [4, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 19, 24, 25, 26]
-categorical_features = ["cf"+str(i) for i in range(1,27)]
+
+categorical_features = ["cf"+str(i) for i in range(1,27)]+ ["day_number"]
 
 fields_ = ["id", "label"] + numeric_features + categorical_features
 
