@@ -14,11 +14,11 @@ import numpy as np
 #
 from model import model, fields
 
-numeric_features = ["if"+str(i) for i in range(1,14)]
+# numeric_features = ["if"+str(i) for i in range(1,14)]
 
-categorical_features = ["cf"+str(i) for i in range(1,27)]+ ["day_number"]
+# categorical_features = ["cf"+str(i) for i in range(1,27)]+ ["day_number"]
 
-fields_ = ["id", "label"] + numeric_features + categorical_features
+# fields_ = ["id", "label"] + numeric_features + categorical_features
 
 #
 # Logging initialization
@@ -48,7 +48,7 @@ logging.info(f"TRAIN_PATH {train_path}")
 #fields = """doc_id,hotel_name,hotel_url,street,city,state,country,zip,class,price,
 #num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
 
-read_table_opts = dict(sep="\t", names=fields_, index_col=False)
+read_table_opts = dict(sep="\t", names=fields, index_col=False)
 df = pd.read_table(train_path, **read_table_opts)
 
 #split train/test
