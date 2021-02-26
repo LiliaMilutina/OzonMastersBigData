@@ -9,6 +9,12 @@ sys.path.append('.')
 
 from model import fields_val
 
+numeric_features = ["if"+str(i) for i in range(1,14)]
+
+categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
+
+fields_val_ = ["id"] + numeric_features + categorical_features 
+
 #
 # Init the logger
 #
@@ -43,29 +49,29 @@ exec(open(filter_cond_files[0]).read())
 
 if len(sys.argv) == 1:
   #by default print all fields
-  outfields = fields_val
+  outfields = fields_val_
 else:
   op, field = sys.argv[1][0], sys.argv[1][1:]
   logging.info(f"OP {op}")
   logging.info(f"FIELD {field}")
 
-  if not op in "+-" or not field in fields_val:
+  if not op in "+-" or not field in fields_val_:
     logging.critical("The optional argument must start with + or - followed by a valid field")
     sys.exit(1)
   elif op == '+':
-    outfields = [fields_val[0], field]
+    outfields = [fields_val_[0], field]
   else:
-    outfields = list(fields_val) # like deepcopy, but on the first level only!
+    outfields = list(fields_val_) # like deepcopy, but on the first level only!
     outfields.remove(field)
 
 for line in sys.stdin:
     # skip header
-    if line.startswith(fields_val[0]):
+    if line.startswith(fields_val_[0]):
         continue
 
     #unpack into a tuple/dict
     values = line.rstrip().split('\t')
-    record = dict(zip(fields_val, values)) #Hotel(values)
+    record = dict(zip(fields_val_, values)) #Hotel(values)
 
     #apply filter conditions
     if record["if1"].isdigit():
