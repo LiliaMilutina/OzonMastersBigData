@@ -33,7 +33,7 @@
 #     print("\n".join(["{0}\t{1}".format(*i) for i in out]))
 
 import sys
-for line in sys.stdin:
+while True:
     line = sys.stdin.readline()
     if not line:
         break
