@@ -8,7 +8,7 @@ import pandas as pd
 
 # sys.path.append('.')
 
-# from model import model, fields_val
+from model import model, fields_val
 
 
 # # Init the logger
