@@ -19,7 +19,7 @@ from model import model, fields_val
 # logging.info("ARGS {}".format(sys.argv[1:]))
 
 #load the model
-model = load("2.joblib")
+# model = load("2.joblib")
 
 #read and infere
 read_opts=dict(
@@ -28,9 +28,11 @@ read_opts=dict(
 )
 
 for df in pd.read_csv(sys.stdin, **read_opts):
-    y_pred = model.predict_proba(df)
-    out = zip(df.id, y_pred[:, 1])
-    print("\n".join(["{0}\t{1}".format(*i) for i in out]))
+#     y_pred = model.predict_proba(df)
+#     out = zip(df.id, y_pred[:, 1])
+#     print("\n".join(["{0}\t{1}".format(*i) for i in out]))
+    print("1\t2")
+
 
 
 
