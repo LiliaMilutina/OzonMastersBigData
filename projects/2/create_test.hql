@@ -1,17 +1,17 @@
 CREATE TEMPORARY EXTERNAL TABLE hw2_test (id INT,	
-	if1 FLOAT,
-	if2 FLOAT,
-	if3 FLOAT,
-	if4 FLOAT,
-	if5 FLOAT,
-	if6 FLOAT,
-	if7 FLOAT,
-	if8 FLOAT,
-	if9 FLOAT,
-	if10 FLOAT,
-	if11 FLOAT,
-	if12 FLOAT,
-	if13 FLOAT,
+	if1 INT,
+	if2 INT,
+	if3 INT,
+	if4 INT,
+	if5 INT,
+	if6 INT,
+	if7 INT,
+	if8 INT,
+	if9 INT,
+	if10 INT,
+	if11 INT,
+	if12 INT,
+	if13 INT,
 	cf1 STRING,
 	cf2 STRING,
 	cf3 STRING,
@@ -41,4 +41,6 @@ CREATE TEMPORARY EXTERNAL TABLE hw2_test (id INT,
 	day_number STRING
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LINES TERMINARED BY '\n'
+STORED AS TEXTFILE
 LOCATION '/datasets/criteo_test_large_features';
