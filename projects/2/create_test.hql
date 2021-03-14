@@ -40,4 +40,5 @@ CREATE TEMPORARY EXTERNAL TABLE hw2_test (id INT,
 	cf26 STRING,
 	day_number STRING
 )
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 LOCATION '/datasets/criteo_test_large_features';
