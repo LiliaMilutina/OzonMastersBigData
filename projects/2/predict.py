@@ -1,14 +1,14 @@
 #!/opt/conda/envs/dsenv/bin/python
 
-import sys, os
-import logging
-from joblib import load
+import sys
+# import logging
+# from joblib import load
 import pandas as pd
-import numpy as np
+# import numpy as np
 
 # sys.path.append('.')
 
-from model import model, fields_val
+# from model import model, fields_val
 
 
 # # Init the logger
