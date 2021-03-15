@@ -5,7 +5,7 @@ from joblib import load
 import pandas as pd
 import numpy as np
 
-from model import model, fields_val
+from model import fields_val
 
 # #load the model
 model = load("2.joblib")
