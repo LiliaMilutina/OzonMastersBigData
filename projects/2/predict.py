@@ -5,9 +5,14 @@ from joblib import load
 import pandas as pd
 import numpy as np
 
-from model import fields_val
+# We create the preprocessing pipelines for both numeric and categorical data.
+numeric_features = ["if"+str(i) for i in range(1,14)]
+categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
+fields_val = ["id"] + numeric_features + categorical_features
 
-# #load the model
+# from model import fields_val
+
+# load the model
 model = load('2.joblib')
 
 #read and infere
