@@ -15,7 +15,7 @@ from model import model, fields_val
 # read and infere
 read_opts=dict(
         sep='\t', names=fields_val, index_col=False, header=None,
-        iterator=True, chunksize=100, na_values = '\\N'
+        iterator=True, chunksize=1, na_values = '\\N'
 )
 
 for df in pd.read_csv(sys.stdin, **read_opts):
