@@ -1,5 +1,6 @@
 ADD FILE ./projects/2/model.py;
 ADD FILE ./projects/2/predict.py;
+ADD FILE 2.joblib
 
 FROM (
 FROM hw2_test
