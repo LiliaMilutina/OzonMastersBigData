@@ -1,4 +1,4 @@
-CREATE TEMPORARY TABLE hw2_test (id INT,	
+CREATE TEMPORARY EXTERNAL TABLE hw2_test (id INT,	
 	if1 INT,
 	if2 INT,
 	if3 INT,
