@@ -1,4 +1,4 @@
-CREATE TABLE LiliaMilutina_checker.hw2_pred (
+CREATE TABLE hw2_pred (
     id INT,
     pred FLOAT)
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
