@@ -43,5 +43,5 @@ CREATE TEMPORARY EXTERNAL TABLE hw2_test (id INT,
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE
-TBLPROPERTIES('serialization.null.format'='')
+TBLPROPERTIES ('serialization.null.format' = 'NULL')
 LOCATION '/datasets/criteo_test_large_features';
