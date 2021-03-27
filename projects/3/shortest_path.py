@@ -13,7 +13,6 @@ sys.path.insert(0, os.path.join(PYSPARK_HOME, "pyspark.zip"))
 import random
 from pyspark import SparkContext, SparkConf
 spark_ui_port = random.choice(range(10000, 11000))
-print(f"Spark UI port: {spark_ui_port}")
 
 conf = SparkConf()
 conf.set("spark.ui.port", spark_ui_port)
@@ -59,8 +58,11 @@ info = vertices.map(lambda x: (x, (num_vertices, False)))
 links = graph.groupByKey().mapValues(list).cache()
 rdd = links.join(info)
 
-start_point = {sys.argv[1]}
-end_point = {sys.argv[2]}
+start = sys.argv[1]
+end = sys.argv[2]
+
+start_point = {start}
+end_point = {end}
     
 to_visit_ids_accu = sc.accumulator(set(), SetParam())
 found_target = sc.accumulator(0)
@@ -90,14 +92,14 @@ while True:
     
 list_ready = rdd.filter(lambda x: x[1][1][1] == True)
 list_ready = list_ready.collect()
-point = start_point.pop()
+
 points = [el[0] for el in list_ready]
 list_ready_dict = dict()
 
 for el in list_ready:
     list_ready_dict[el[0]] = el[1][0]
-    
-list_ready_dict[end_point.pop()] = []
+
+list_ready_dict[end] = []
 
 def bfs(graph, start, end):
 
@@ -114,12 +116,12 @@ def bfs(graph, start, end):
             new_path.append(adjacent)
             queue.append(new_path)
     
-result = bfs(list_ready_dict, start_point.pop(), end_point.pop())
+result = bfs(list_ready_dict, start, end)
 res = [int(el) for el in result]
 
 
 import csv
-file = open(sys.arv[4], "w")
+file = open(sys.argv[4], "w")
 writer = csv.writer(file, delimiter = ",")
 writer.writerow(res)
 file.close()
