@@ -119,9 +119,8 @@ def bfs(graph, start, end):
 result = bfs(list_ready_dict, start, end)
 res = [int(el) for el in result]
 
-
 import csv
-file = open(sys.argv[4], "w")
-writer = csv.writer(file, delimiter = ",")
-writer.writerow(res)
-file.close()
+
+with open(sys.argv[4], 'w') as csvfile:
+    filewriter = csv.writer(csvfile, delimiter=',')
+    filewriter.writerow(res)
