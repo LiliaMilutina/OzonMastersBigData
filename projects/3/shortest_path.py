@@ -121,6 +121,6 @@ res = [int(el) for el in result]
 
 import csv
 
-with open(sys.argv[4], 'w') as csvfile:
+with open('LiliaMilutina_hw3_output', 'w') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',')
     filewriter.writerow(res)
