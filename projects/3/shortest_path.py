@@ -97,30 +97,30 @@ points = [el[0] for el in list_ready]
 list_ready_dict = dict()
 
 for el in list_ready:
-    list_ready_dict[el[0]] = el[1][0]
+    list_ready_dict[el[0]] = set(el[1][0])
 
-list_ready_dict[end] = []
+list_ready_dict[end] = set([])
 
-def bfs(graph, start, end):
-
-    queue = []
-    queue.append([start])
+def bfs_paths(graph, start, goal):
+    min_path = len(list_ready_dict)
+    queue = [(start, [start])]
     while queue:
-        path = queue.pop(0)
-        node = path[-1]
-        if node == end:
-            return path
-
-        for adjacent in graph.get(node, []):
-            new_path = list(path)
-            new_path.append(adjacent)
-            queue.append(new_path)
-    
-result = bfs(list_ready_dict, start, end)
-res = [int(el) for el in result]
-
+        (vertex, path) = queue.pop(0)
+        if vertex in graph.keys() and len(path) <= min_path:
+            for next in graph[vertex] - set(path):
+                if next == goal:
+                    yield path + [next]
+                    min_path = len(path)
+                else:
+                    queue.append((next, path + [next]))
+                    
+paths = bfs_paths(list_ready_dict, start, end)
+result = list(paths)
 import csv
 
 with open('LiliaMilutina_hw3_output', 'w') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',')
-    filewriter.writerow(res)
+    for el in result:
+        temp = [int(e) for e in el] 
+        filewriter.writerow(temp)
+sc.stop()
