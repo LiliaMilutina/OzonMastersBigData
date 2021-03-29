@@ -121,6 +121,6 @@ res = [int(el) for el in result]
 
 import csv
 
-with open('/user/LiliaMilutina/LiliaMilutina_hw3_output', 'w') as csvfile:
+with open('/home/users/LiliaMilutina/LiliaMilutina_hw3_output', 'w') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',')
     filewriter.writerow(res)
