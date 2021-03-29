@@ -118,11 +118,8 @@ paths = bfs_paths(list_ready_dict, start, end)
 result = list(paths)
 result = sorted(result)
 
-import csv
-
-with open('LiliaMilutina_hw3_output', 'w') as csvfile:
-    filewriter = csv.writer(csvfile, delimiter=',')
-    for el in result:
-        temp = [int(e) for e in el] 
-        filewriter.writerow(temp)
+import pandas as pd
+df = pd.DataFrame(result)
+df.to_csv('LiliaMilutina_hw3_output', index=False, header=None)
 sc.stop()
+
