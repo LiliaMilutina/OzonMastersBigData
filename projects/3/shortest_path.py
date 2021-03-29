@@ -116,6 +116,8 @@ def bfs_paths(graph, start, goal):
                     
 paths = bfs_paths(list_ready_dict, start, end)
 result = list(paths)
+result = sorted(result)
+
 import csv
 
 with open('LiliaMilutina_hw3_output', 'w') as csvfile:
