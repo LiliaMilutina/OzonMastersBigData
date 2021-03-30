@@ -120,7 +120,11 @@ result = sorted(result)
 
 import pandas as pd
 df = pd.DataFrame(result)
-df.to_csv(sys.argv[4], index=False, header=None)
+df.to_csv('LiliaMilutina_hw3_output', index=False, header=None)
+
+from subprocess import PIPE, Popen
+put = Popen(["hadoop", "fs", "-put", '-f', 'LiliaMilutina_hw3_output', sys.argv[4]], stdin=PIPE, bufsize=-1)
+put.communicate()
 
 sc.stop()
 
