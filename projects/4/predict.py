@@ -10,6 +10,8 @@ model_path = sys.argv[0]
 data_test_path = sys.argv[1]
 result_path = sys.argv[2]
 
+data_test_path = "/datasets/amazon/all_reviews_5_core_test_features.json"
+
 pipeline_model = PipelineModel.load(model_path)
 
 schema = StructType([
