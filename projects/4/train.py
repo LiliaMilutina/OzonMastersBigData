@@ -46,6 +46,6 @@ data_train.repartition(4).cache()
 pipeline_model = pipeline.fit(data_train)
 
 import subprocess
-cat = subprocess.Popen(["hdfs", "dfs", "-mkdir", "model_path"], stdout=subprocess.PIPE)
+cat = subprocess.Popen(["hdfs", "dfs", "-mkdir", model_path], stdout=subprocess.PIPE)
 
 pipeline_model.write().overwrite().save(model_path)
