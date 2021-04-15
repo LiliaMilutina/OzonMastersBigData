@@ -24,6 +24,7 @@ data_train_path = sys.argv[0]
 model_path = sys.argv[1]
 
 data_train_path = "/datasets/amazon/all_reviews_5_core_train.json"
+model_path = "/home/users/LiliaMilutina/LiliaMilutina_hw4_output"
 
 
 schema = StructType([
