@@ -11,6 +11,7 @@ data_test_path = sys.argv[1]
 result_path = sys.argv[2]
 
 data_test_path = "/datasets/amazon/all_reviews_5_core_test_features.json"
+model_path = "/home/users/LiliaMilutina/LiliaMilutina_hw4_output"
 
 pipeline_model = PipelineModel.load(model_path)
 
