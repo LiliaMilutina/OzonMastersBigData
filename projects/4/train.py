@@ -23,6 +23,9 @@ from pyspark.sql.types import *
 data_train_path = sys.argv[0]
 model_path = sys.argv[1]
 
+data_train_path = "/datasets/amazon/all_reviews_5_core_train.json"
+
+
 schema = StructType([
     StructField("asin", StringType()),
     StructField("id", LongType()),
