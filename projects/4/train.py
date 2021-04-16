@@ -23,10 +23,6 @@ from pyspark.sql.types import *
 data_train_path = sys.argv[1]
 model_path = sys.argv[2]
 
-# data_train_path = "/datasets/amazon/all_reviews_5_core_train.json"
-# model_path = "/home/users/LiliaMilutina/LiliaMilutina_hw4_output"
-
-
 schema = StructType([
     StructField("asin", StringType()),
     StructField("id", LongType()),
@@ -44,8 +40,5 @@ data_train = spark.read.json(data_train_path, schema=schema, multiLine=True)
 data_train.repartition(4).cache()
 
 pipeline_model = pipeline.fit(data_train)
-
-# import subprocess
-# cat = subprocess.Popen(["hdfs", "dfs", "-mkdir", model_path], stdout=subprocess.PIPE)
 
 pipeline_model.write().overwrite().save(model_path)
