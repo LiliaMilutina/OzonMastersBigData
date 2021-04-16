@@ -6,11 +6,11 @@ spark.sparkContext.setLogLevel('WARN')
 from pyspark.ml import Pipeline, PipelineModel
 from pyspark.sql import functions as f
 
-model_path = sys.argv[0]
-data_test_path = sys.argv[1]
-result_path = sys.argv[2]
+model_path = sys.argv[1]
+data_test_path = sys.argv[2]
+result_path = sys.argv[3]
 
-data_test_path = "/datasets/amazon/all_reviews_5_core_test_features.json"
+# data_test_path = "/datasets/amazon/all_reviews_5_core_test_features.json"
 
 pipeline_model = PipelineModel.load(model_path)
 
