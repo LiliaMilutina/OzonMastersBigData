@@ -18,7 +18,8 @@ import mlflow
 def parse_args():
     parser = argparse.ArgumentParser(description='example')
     parser.add_argument(
-        "--train_path"
+        "--train_path",
+        type=str
     )
     parser.add_argument(
         "--model_param1",
