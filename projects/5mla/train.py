@@ -1,6 +1,7 @@
 #!/opt/conda/envs/dsenv/bin/python
 
 import os, sys
+import argparse
 
 import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -12,60 +13,75 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
+import mlflow
 
-#
-# Model pipeline
-#
+def parse_args():
+    parser = argparse.ArgumentParser(description='example')
+    parser.add_argument(
+        "--train_path",
+        type=string
+    )
+    parser.add_argument(
+        "--model_param1",
+        type=float,
+        default=0.1
+    )
+    return parser.parse_args()
 
-# We create the preprocessing pipelines for both numeric and categorical data.
-numeric_features = ["if"+str(i) for i in range(1,14)]
-categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
+def main():
+        #
+    # Model pipeline
+    #
 
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median')),
-#    ('scaler', StandardScaler())
-])
+    # We create the preprocessing pipelines for both numeric and categorical data.
+    numeric_features = ["if"+str(i) for i in range(1,14)]
+    categorical_features = ["cf"+str(i) for i in range(1,27)] + ["day_number"]
 
-categorical_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))
-])
+    numeric_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='median')),
+    ])
 
-fields = ["id", "label"] + numeric_features + categorical_features
-fields_val = ["id"] + numeric_features + categorical_features
+    categorical_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
 
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorical_features)
-    ]
-)
+    fields = ["id", "label"] + numeric_features + categorical_features
+    fields_val = ["id"] + numeric_features + categorical_features
 
-# Now we have a full prediction pipeline.
-model = Pipeline(steps=[
-    ('preprocessor', preprocessor),
-    ('logregression', LogisticRegression())
-])
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', numeric_transformer, numeric_features),
+            ('cat', categorical_transformer, categorical_features)
+        ]
+    )
 
-train_path = sys.argv[1]
-model_param1 = sys.argv[2]
+    # Now we have a full prediction pipeline.
+    model = Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('logregression', LogisticRegression())
+    ])
+    
+    args = parse_args()
+    mlflow.sklearn.autolog()
 
-read_table_opts = dict(sep="\t", names=fields, index_col=False)
-df = pd.read_table(train_path, **read_table_opts)
+    read_table_opts = dict(sep="\t", names=fields, index_col=False)
+    df = pd.read_table(args.train_path, **read_table_opts)
 
-#split train/test
-X_train, X_test, y_train, y_test = train_test_split(
-    df.iloc[:,2:], df.iloc[:,1], test_size=0.33, random_state=42
-)
+    #split train/test
+    X_train, X_test, y_train, y_test = train_test_split(
+        df.iloc[:,2:], df.iloc[:,1], test_size=0.33, random_state=42
+    )
 
-#
-# Train the model
-#
-model.fit(X_train, y_train)
-
-y_pred = model.predict_proba(X_test)
-
-model_score = log_loss(y_test, y_pred[:, 1])
-
-# save the model
-dump(model, "{}.joblib".format(proj_id))
+    #
+    # Train the model
+    #
+    
+    with mlflow.strat_run():
+        model.fit(X_train, y_train)
+        y_pred = model.predict_proba(X_test)
+        model_score = log_loss(y_test, y_pred[:, 1])
+        mlflow.log_metrics({"log_loss": model_score})
+        
+if __name__ == "__main__":
+    main()
