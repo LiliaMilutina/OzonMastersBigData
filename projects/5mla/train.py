@@ -77,7 +77,7 @@ def main():
     # Train the model
     #
     
-    with mlflow.strat_run():
+    with mlflow.start_run():
         model.fit(X_train, y_train)
         y_pred = model.predict_proba(X_test)
         model_score = log_loss(y_test, y_pred[:, 1])
