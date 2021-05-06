@@ -1,1 +1,12 @@
-
+channels:
+  -defaults
+  -conda-forge
+dependences:
+  -python=3.7.9
+  -pip
+  -pip:
+    -mlflow
+      -sklearn
+  name: mlflow-env
+    
+  
