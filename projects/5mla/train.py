@@ -6,14 +6,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import log_loss
 from joblib import dump
-import numpy as np
 
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
-
 
 #
 # Model pipeline
@@ -71,5 +69,3 @@ model_score = log_loss(y_test, y_pred[:, 1])
 
 # save the model
 dump(model, "{}.joblib".format(proj_id))
-
-
