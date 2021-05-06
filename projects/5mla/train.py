@@ -50,33 +50,8 @@ model = Pipeline(steps=[
     ('logregression', LogisticRegression())
 ])
 
-#
-# Logging initialization
-#
-logging.basicConfig(level=logging.DEBUG)
-logging.info("CURRENT_DIR {}".format(os.getcwd()))
-logging.info("SCRIPT CALLED AS {}".format(sys.argv[0]))
-logging.info("ARGS {}".format(sys.argv[1:]))
-
-#
-# Read script arguments
-#
-try:
-  proj_id = sys.argv[1] 
-  train_path = sys.argv[2]
-except:
-  logging.critical("Need to pass both project_id and train dataset path")
-  sys.exit(1)
-
-
-logging.info(f"TRAIN_ID {proj_id}")
-logging.info(f"TRAIN_PATH {train_path}")
-
-#
-# Read dataset
-#
-#fields = """doc_id,hotel_name,hotel_url,street,city,state,country,zip,class,price,
-#num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
+train_path = sys.argv[1]
+model_param1 = sys.argv[2]
 
 read_table_opts = dict(sep="\t", names=fields, index_col=False)
 df = pd.read_table(train_path, **read_table_opts)
