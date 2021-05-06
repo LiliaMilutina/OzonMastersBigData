@@ -6,7 +6,6 @@ dependences:
   -pip
   -pip:
     -pandas
-    -numpy
     -mlflow
       -sklearn
   name: mlflow-env
