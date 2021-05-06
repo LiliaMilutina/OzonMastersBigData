@@ -1,6 +1,6 @@
 name: example
 
-conda_env: mlflow-env.yaml
+conda_env: conda.yml
 
 entry_points:
   main:
