@@ -5,6 +5,8 @@ dependences:
   -python=3.7.9
   -pip
   -pip:
+    -pandas
+    -numpy
     -mlflow
       -sklearn
   name: mlflow-env
