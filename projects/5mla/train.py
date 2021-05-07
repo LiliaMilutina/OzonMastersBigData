@@ -6,7 +6,6 @@ import argparse
 import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import log_loss
-from joblib import dump
 
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
