@@ -58,7 +58,7 @@ def main():
     # Now we have a full prediction pipeline.
     model = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('logregression', LogisticRegression())
+        ('logregression', LogisticRegression(solver='sag'))
     ])
     
     args = parse_args()
