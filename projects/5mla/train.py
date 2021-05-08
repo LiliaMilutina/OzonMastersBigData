@@ -81,7 +81,7 @@ def main():
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
         signature = infer_signature(y_train, y_train)
-        mlflow.sklearn.log_model(model, "log", signature=signature)
+        mlflow.sklearn.log_model(model, "MLmodel", signature=signature)
         model_score = log_loss(y_test, y_pred)
         mlflow.log_metrics({"log_loss": model_score})
         
