@@ -58,7 +58,7 @@ def main():
     # Now we have a full prediction pipeline.
     model = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('logregression', LogisticRegression(solver='sag'))
+        ('logregression', LogisticRegression(max_iter=10))
     ])
     
     args = parse_args()
@@ -69,7 +69,7 @@ def main():
 
     #split train/test
     X_train, X_test, y_train, y_test = train_test_split(
-        df.iloc[:100000,2:], df.iloc[:100000,1], test_size=0.33, random_state=42
+        df.iloc[:,2:], df.iloc[:,1], test_size=0.33, random_state=42
     )
 
     #
@@ -78,8 +78,8 @@ def main():
     
     with mlflow.start_run():
         model.fit(X_train, y_train)
-        y_pred = model.predict_proba(X_test)
-        model_score = log_loss(y_test, y_pred[:, 1])
+        y_pred = model.predict(X_test)
+        model_score = log_loss(y_test, y_pred)
         mlflow.log_metrics({"log_loss": model_score})
         
 if __name__ == "__main__":
