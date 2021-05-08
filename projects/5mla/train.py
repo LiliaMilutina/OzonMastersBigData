@@ -13,6 +13,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 import mlflow
+import mlflow.sklearn
+from mlflow.models.signature import infer_signature
 
 def parse_args():
     parser = argparse.ArgumentParser(description='example')
@@ -62,7 +64,6 @@ def main():
     ])
     
     args = parse_args()
-    mlflow.sklearn.autolog()
 
     read_table_opts = dict(sep="\t", names=fields, index_col=False)
     df = pd.read_table(args.train_path, **read_table_opts)
@@ -79,6 +80,8 @@ def main():
     with mlflow.start_run():
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
+        signature = infer_signature(y_train, y_train)
+        mlflow.sklearn.log_model(model, "log", signature=signature)
         model_score = log_loss(y_test, y_pred)
         mlflow.log_metrics({"log_loss": model_score})
         
