@@ -80,7 +80,7 @@ def main():
         model.fit(X_train, y_train)
         
         #log model params
-        mlflow.log_param("model_param1", model.max_iter)
+        mlflow.log_param("model_param1", args.model_param1)
         mlflow.sklearn.log_model(model, artifact_path="model")
         
         y_pred = model.predict(X_test)
