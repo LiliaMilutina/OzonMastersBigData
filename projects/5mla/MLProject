@@ -6,7 +6,7 @@ entry_points:
   main:
     parameters:
       train_path: {type: string}
-      model_param1: {type: float, default: 0.1}
+      model_param1: {type: int, default: 10}
     command: |
       python train.py \
       --train_path={train_path} \
