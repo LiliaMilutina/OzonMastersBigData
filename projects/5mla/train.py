@@ -14,7 +14,6 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 import mlflow
 import mlflow.sklearn
-from mlflow.models.signature import infer_signature
 
 def parse_args():
     parser = argparse.ArgumentParser(description='example')
@@ -24,8 +23,8 @@ def parse_args():
     )
     parser.add_argument(
         "--model_param1",
-        type=float,
-        default=0.1
+        type=int,
+        default=10
     )
     return parser.parse_args()
 
@@ -56,15 +55,14 @@ def main():
             ('cat', categorical_transformer, categorical_features)
         ]
     )
+    
+    args = parse_args()
 
     # Now we have a full prediction pipeline.
     model = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('logregression', LogisticRegression(max_iter=10))
+        ('logregression', LogisticRegression(max_iter=args.model_param1))
     ])
-    
-    args = parse_args()
-    mlflow.sklearn.autolog()
 
     read_table_opts = dict(sep="\t", names=fields, index_col=False)
     df = pd.read_table(args.train_path, **read_table_opts)
@@ -80,6 +78,11 @@ def main():
     
     with mlflow.start_run():
         model.fit(X_train, y_train)
+        
+        #log model params
+        mlflow.log_param("model_param1", model.max_iter)
+        mlflow.sklearn.log_model(model, artifact_path="model")
+        
         y_pred = model.predict(X_test)
         model_score = log_loss(y_test, y_pred)
         mlflow.log_metrics({"log_loss": model_score})
