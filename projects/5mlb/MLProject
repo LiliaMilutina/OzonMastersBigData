@@ -1,7 +1,5 @@
 name: My Project
 
-conda_env: conda.yaml
-
 entry_points:
   predict:
     parameters:
