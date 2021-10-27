@@ -1,3 +1,3 @@
-# ozon-masters-bigdata
+# OzonMasters-BigData
 
-homework bigdata: hadoop, hive
+Ознакомительные задания по использованию Hadoop, Hive, PySpark, AirFlow
